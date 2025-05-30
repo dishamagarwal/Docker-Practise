@@ -10,7 +10,7 @@ EXPOSE 80
 CMD ["node", "app.js"]
 
 
-# docker network app_network
+# docker network create app_network
 
 # docker run 
 # --name mongo_db 
@@ -26,7 +26,7 @@ CMD ["node", "app.js"]
 # -v /app/node_modules 
 # -d 
 # -rm
-# -p 8080:80
+# -p 80:80
 # --name backend_container 
 # --network app_network 
 # backend_image
