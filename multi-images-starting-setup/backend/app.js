@@ -87,7 +87,8 @@ mongoose.connect(
   // 'mongodb://host.docker.internal:27017/course-goals',
   // 'mongodb://localhost:27017/course-goals',
   // 'mongodb://mongo_db:27017/course-goals',
-  'mongodb://disha:secret@mongo_db:27017/course-goals?authSource=admin',
+  // 'mongodb://disha:secret@mongo_db:27017/course-goals?authSource=admin',
+  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongo_db:27017/course-goals?authSource=admin`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
