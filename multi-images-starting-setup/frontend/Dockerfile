@@ -17,8 +17,7 @@ CMD ["npm", "start"]
 # -rm
 # -it
 # -p 3000:3000
-# -v "/Users/dishaagarwal/Downloads/coding_projects/docker_practise/multi-01-starting-setup/frontend":/app
-# -v /app/node_modules
+# -v "/Users/dishaagarwal/Downloads/coding_projects/docker_practise/multi-01-starting-setup/frontend/src":/app/src
 # frontend_container
 
 # Note: the node frontend is run in the browser and not in the container so you don't need to include it in the network,
