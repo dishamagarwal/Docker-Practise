@@ -2,7 +2,7 @@ FROM node
 WORKDIR /app
 
 COPY package.json .
-RUN npm install
+RUN npm install && npm install -g nodemon
 
 COPY . .
 EXPOSE 80
@@ -10,7 +10,7 @@ EXPOSE 80
 ENV MONGODB_USERNAME=disha
 ENV MONGODB_PASSWORD=secret
 
-CMD ["npm", "start"]       //~nodemon restarts the node server when any js file changes, npm syart is the command to utilize nomdemon
+CMD ["nodemon", "app.js"]      //~nodemon restarts the node server when any js file changes, npm syart is the command to utilize nomdemon
 
 
 # docker network create app_network

@@ -1,0 +1,50 @@
+# $docker-compose up -d (-d runs in detached mode)
+# $docker-compose down (-v remove all volumes automatically)
+
+version: '3.8'
+services:
+  mongodb:
+    image: 'mongo'
+    container_name: mongodb
+    volumes:
+      - data:/data/db
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=disha
+    #   - MONGO_INITDB_ROOT_PASSWORD=secret
+    env_file:
+      - ./env/mongo.env
+    # networks:
+    #   - networkName
+    # all the services in defined in the same compose file will already be part 
+    # of one and the same network that is automatically created by docker
+
+  backend:
+    build: ./backend
+    # build: 
+    #   context: ./backend
+    #   dockerfile: Dockerfile    -- do not need to specify this if the dile is named dockerfile
+    ports:
+      - '80:80'
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - logs:/app/logs
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend/src:/app/src
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    depends_on:
+      - backend
+
+volumes:
+  data:
+  logs:
